@@ -26,7 +26,7 @@ object Router {
     }
 
     private fun showInFragmentMainFragent(fragment: Fragment, fm: FragmentManager?, addToBackStack: Boolean = true){
-        showFragment(fragment, fm, R.id.fragmentAny, addToBackStack)
+        showFragment(fragment, fm, R.id.mainFragment, addToBackStack)
     }
 
     fun showMainFragmentMain(fm: FragmentManager?){
