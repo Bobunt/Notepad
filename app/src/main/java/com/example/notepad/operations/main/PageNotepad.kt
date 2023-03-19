@@ -1,4 +1,3 @@
 package com.example.notepad.operations.main
 
-class PageAdapter {
-}
+data class PageNotepad(val name: String)

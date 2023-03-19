@@ -8,7 +8,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()//Скрываем верхнюю плашку
         setContentView(R.layout.activity_main)
-
         Router.showMainFragmentMain(supportFragmentManager)
     }
 }

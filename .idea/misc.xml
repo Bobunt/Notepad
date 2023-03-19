@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/activity_main.xml" value="0.20208333333333334" />
+        <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/fragment_general.xml" value="0.18802083333333333" />
+        <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/fragment_menu.xml" value="0.20208333333333334" />
+        <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/item_page.xml" value="0.23822463768115942" />
         <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/list_fragment.xml" value="0.21614583333333334" />
         <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/main_fragment.xml" value="0.21614583333333334" />
+        <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/page_item.xml" value="0.22" />
         <entry key="..\:/DCherrn/AllProjects/Notepad/app/src/main/res/layout/recyclerview_fragment.xml" value="0.20208333333333334" />
       </map>
     </option>

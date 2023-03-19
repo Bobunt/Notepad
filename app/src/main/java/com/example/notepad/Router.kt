@@ -2,6 +2,7 @@ package com.example.notepad
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.notepad.operations.main.GeneralFragment
 
 object Router {
     private fun showFragment(currentFragment: Fragment, fm: FragmentManager?, container: Int, addToBackStack: Boolean = true) {
@@ -31,6 +32,6 @@ object Router {
 
     fun showMainFragmentMain(fm: FragmentManager?){
         clearBackStack(fm)
-        showInFragmentMainFragent(MainFragment(), fm, addToBackStack = false)
+        showInFragmentMainFragent(GeneralFragment(), fm, addToBackStack = false)
     }
 }
