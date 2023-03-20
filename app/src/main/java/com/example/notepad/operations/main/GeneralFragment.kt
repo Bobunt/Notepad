@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notepad.R
 import com.example.notepad.data.Item
@@ -13,6 +15,14 @@ import com.example.notepad.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.fragment_general.view.*
 
 class GeneralFragment : Fragment() {
+
+
+    private val viewModel: GeneralViewModel by activityViewModels {
+        GeneralViewModelFactory(
+            (activity?.application as GeneralApplication).database.itemDao()
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -27,15 +37,13 @@ class GeneralFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val db = ItemRoomDatabase.getDatabase(view.context)
+
         view.button_r.setOnClickListener{
             val item = Item(null,
                 view.editTextTextPersonName.text.toString(),
                 view.editTextTextPersonName2.text.toString(),
             )
-            Thread{
-//                db.itemDao().insertItem(item)
-            }.start()
+//            viewModel.insertDataItem(item)
         }
         val recyclerView = view.findViewById<RecyclerView>(R.id.rcView)
     }
