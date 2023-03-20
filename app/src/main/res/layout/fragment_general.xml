@@ -52,11 +52,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="494dp"
                 android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@+id/button"
+                app:layout_constraintTop_toBottomOf="@+id/button_r"
                 tools:layout_editor_absoluteX="0dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_r"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Button"
