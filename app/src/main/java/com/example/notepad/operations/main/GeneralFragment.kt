@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notepad.R
-import com.example.notepad.db.Datasource
 
 class GeneralFragment : Fragment() {
 
@@ -26,10 +25,8 @@ class GeneralFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val myDataset = Datasource().loadAffirmations()
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rcView)
-        recyclerView.adapter = PageNotepadAdapter(view.context, myDataset)
     }
 
     companion object {

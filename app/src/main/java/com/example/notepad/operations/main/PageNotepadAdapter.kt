@@ -9,8 +9,7 @@ import com.example.notepad.R
 import kotlinx.android.synthetic.main.layout_page_route.view.*
 
 class PageNotepadAdapter(
-    private val context: Context,
-    private val dataset: List<PageNotepad>
+    private val context: Context
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val pageList = ArrayList<PageNotepad>()
 
