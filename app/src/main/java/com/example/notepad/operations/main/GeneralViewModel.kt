@@ -9,9 +9,10 @@ import com.example.notepad.data.Item
 import com.example.notepad.data.ItemDao
 import com.example.notepad.data.ItemRoomDatabase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GeneralViewModel( private val itemDao: ItemDao) : ViewModel() {
-    val allItems: LiveData<List<Item>> = itemDao.getItem().asLiveData()//asLiveData()
+
+class GeneralViewModel @Inject constructor( val dataBase: ItemRoomDatabase) : ViewModel() {
 
     private fun getNewItemEntry(itemName: String, itemText: String): Item {
         return Item(
@@ -27,13 +28,13 @@ class GeneralViewModel( private val itemDao: ItemDao) : ViewModel() {
 
     private fun insertItem(item: Item) {
         viewModelScope.launch {
-            itemDao.insertItem(item)
+            dataBase.itemDao().insertItem(item)
         }
     }
 
     fun deleteItem(item: Item) {
         viewModelScope.launch {
-            itemDao.deleteItem(item)
+            dataBase.itemDao().deleteItem(item)
         }
     }
 
@@ -51,18 +52,17 @@ class GeneralViewModel( private val itemDao: ItemDao) : ViewModel() {
 
     private fun updateItem(item: Item) {
         viewModelScope.launch {
-            itemDao.updateItem(item)
+            dataBase.itemDao().updateItem(item)
         }
     }
-
 }
 
-class GeneralViewModelFactory(private val itemDao: ItemDao): ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(GeneralViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return GeneralViewModel(itemDao) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
+//class GeneralViewModelFactory(private val itemDao: ItemDao): ViewModelProvider.Factory{
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(GeneralViewModel::class.java)) {
+//            @Suppress("UNCHECKED_CAST")
+//            return GeneralViewModel(itemDao) as T
+//        }
+//        throw IllegalArgumentException("Unknown ViewModel class")
+//    }
+//}

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_general.view.*
 class GeneralFragment : Fragment() {
 //    private val viewModel: GeneralViewModel by activityViewModels{
 //        GeneralViewModelFactory(
-//            (activity?.application as GeneralApplication).database.itemDao()
+//            (this as GeneralApplication).database.itemDao()
 //        )
 //    }
 
