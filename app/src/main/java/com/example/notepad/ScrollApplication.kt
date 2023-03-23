@@ -1,4 +1,4 @@
-package com.example.notepad.fragments
+package com.example.notepad
 
 import android.app.Application
 import com.example.notepad.data.ItemRoomDatabase
