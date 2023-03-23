@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_addScroll_to_scrollsFragment"
             app:destination="@id/scrollsFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/changeScrol"
