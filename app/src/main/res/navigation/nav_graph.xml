@@ -37,5 +37,8 @@
         <action
             android:id="@+id/action_changeScrol_to_scrollsFragment"
             app:destination="@id/scrollsFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

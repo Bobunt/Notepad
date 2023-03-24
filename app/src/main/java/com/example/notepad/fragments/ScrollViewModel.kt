@@ -1,13 +1,14 @@
 package com.example.notepad.fragments
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.notepad.data.Item
 import com.example.notepad.data.ItemDao
 import kotlinx.coroutines.launch
 
 class ScrollViewModel (private val itemDao: ItemDao): ViewModel() {
+    // Cache all items form the database using LiveData.
+    val allItems: LiveData<List<Item>> = itemDao.getItem().asLiveData()
+
     private fun insertItem(item: Item) {
         viewModelScope.launch {
             itemDao.insertItem(item)
