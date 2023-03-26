@@ -14,6 +14,19 @@ class ScrollViewModel (private val itemDao: ItemDao): ViewModel() {
             itemDao.insertItem(item)
         }
     }
+
+    fun getDataUpdate(item: Item){
+        viewModelScope.launch {
+            itemDao.updateItem(item)
+        }
+    }
+
+    fun getDataDelete(item: Item){
+        viewModelScope.launch {
+            itemDao.deleteItem(item)
+        }
+    }
+
     fun getDataInsert(nameScroll: String, textScroll: String){
         val item = Item(null, nameScroll, textScroll)
         insertItem(item)

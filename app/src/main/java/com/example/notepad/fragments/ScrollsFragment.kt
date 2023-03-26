@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notepad.R
 import com.example.notepad.ScrollApplication
+import com.example.notepad.data.Item
 import com.example.notepad.databinding.FragmentScrollsBinding
 
 class ScrollsFragment : Fragment() {
@@ -20,14 +21,21 @@ class ScrollsFragment : Fragment() {
         )
     }
 
-    private val onItemClicked = {
-        val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(getString(R.string.add_scroll))
+    private val onItemClicked = { item: Item ->
+        val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(title = item.itemName, text = item.itemText, id = item.id!!)
         this.findNavController().navigate(action)
+    }
+
+    private val onItemClickedDelete = { item: Item ->
+        viewModel.getDataDelete(item)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = ScrollAdapter( onItemClicked = onItemClicked)
+        adapter = ScrollAdapter(
+            onItemClicked = onItemClicked,
+            onItemClickedDelete = onItemClickedDelete
+        )
         setHasOptionsMenu(true)
     }
     override fun onCreateView(
@@ -47,7 +55,7 @@ class ScrollsFragment : Fragment() {
             }
         }
         binding.addScrollItem.setOnClickListener {
-            val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(getString(R.string.add_scroll))
+            val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(title = "", text = "")
             this.findNavController().navigate(action)
         }
     }

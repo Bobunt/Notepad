@@ -27,7 +27,15 @@
             app:destination="@id/scrollsFragment" />
         <argument
             android:name="title"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument android:name="text"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/changeScrol"
