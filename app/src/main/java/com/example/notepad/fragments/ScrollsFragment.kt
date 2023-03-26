@@ -13,16 +13,21 @@ import com.example.notepad.databinding.FragmentScrollsBinding
 class ScrollsFragment : Fragment() {
     private var _binding: FragmentScrollsBinding? = null
     private val binding get() = _binding!!
-    private val adapter = ScrollAdapter()
+    private lateinit var adapter: ScrollAdapter
     private val viewModel: ScrollViewModel by activityViewModels {
         ScrollViewModelFactory(
             (activity?.application as ScrollApplication).database.itemDao()
         )
     }
 
+    private val onItemClicked = {
+        val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(getString(R.string.add_scroll))
+        this.findNavController().navigate(action)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        adapter = ScrollAdapter( onItemClicked = onItemClicked)
         setHasOptionsMenu(true)
     }
     override fun onCreateView(
@@ -30,8 +35,7 @@ class ScrollsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentScrollsBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

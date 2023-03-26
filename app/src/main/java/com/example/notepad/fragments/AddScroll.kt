@@ -28,9 +28,13 @@ class AddScroll : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.addScrollData.setOnClickListener {
-            viewModel.getDataInsert(binding.nameNewScroll.text.toString())
+    override fun onDestroy() {
+        super.onDestroy()
+        if( binding.nameScroll.text.toString() != "") {
+            viewModel.getDataInsert(
+                nameScroll = binding.nameScroll.text.toString(),
+                textScroll = binding.textScroll.text.toString()
+            )
         }
     }
 }

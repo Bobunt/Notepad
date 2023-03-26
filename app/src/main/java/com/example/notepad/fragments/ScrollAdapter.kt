@@ -8,7 +8,7 @@ import com.example.notepad.R
 import com.example.notepad.data.Item
 import com.example.notepad.databinding.AdapterScrollBinding
 
-class ScrollAdapter(): RecyclerView.Adapter<ScrollAdapter.ScrollHolder>()  {
+class ScrollAdapter(private val onItemClicked: () -> Unit): RecyclerView.Adapter<ScrollAdapter.ScrollHolder>()  {
     var scrollList = ArrayList<Item>()
 
     fun setData(data: List<Item>){
@@ -19,16 +19,21 @@ class ScrollAdapter(): RecyclerView.Adapter<ScrollAdapter.ScrollHolder>()  {
         val binding = AdapterScrollBinding.bind(item)
             fun bind(scroll: Item) = with(binding){
                 itemName.text = scroll.itemName
+
             }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_scroll, parent, false)
+        onItemClicked
         return ScrollHolder(view)
     }
 
     override fun onBindViewHolder(holder: ScrollHolder, position: Int) {
         holder.bind(scrollList[position])
+        holder.itemView.setOnClickListener {
+            onItemClicked.invoke()
+        }
     }
 
     override fun getItemCount(): Int {

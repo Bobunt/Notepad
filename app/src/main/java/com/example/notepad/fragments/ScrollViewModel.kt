@@ -14,8 +14,8 @@ class ScrollViewModel (private val itemDao: ItemDao): ViewModel() {
             itemDao.insertItem(item)
         }
     }
-    fun getDataInsert(nameScroll: String){
-        val item = Item(null, nameScroll, "")
+    fun getDataInsert(nameScroll: String, textScroll: String){
+        val item = Item(null, nameScroll, textScroll)
         insertItem(item)
     }
 }
