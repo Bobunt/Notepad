@@ -10,11 +10,14 @@ import androidx.navigation.fragment.navArgs
 import com.example.notepad.ScrollApplication
 import com.example.notepad.data.Item
 import com.example.notepad.databinding.FragmentAddScrollBinding
+import org.threeten.bp.LocalDate
+
 
 class AddScroll : Fragment() {
     private var _binding: FragmentAddScrollBinding? = null
     private val binding get() = _binding!!
-    private val navigationArgs: AddScrollArgs by navArgs()//    private val navigationArgs: ItemDetailFragmentArgs by navArgs()
+    private val navigationArgs: AddScrollArgs by navArgs()
+    val current = LocalDate.now()
 
     private val viewModel: ScrollViewModel by activityViewModels {
         ScrollViewModelFactory(
@@ -39,17 +42,23 @@ class AddScroll : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+
+
         if (binding.nameScroll.text.toString() != "") {
             if (navigationArgs.id == 0) {
                 viewModel.getDataInsert(
                     nameScroll = binding.nameScroll.text.toString(),
-                    textScroll = binding.textScroll.text.toString()
+                    textScroll = binding.textScroll.text.toString(),
+                    dateStart = current.toString(),
+                    dateСhange =  current.toString()
                 )
             }else {
                 viewModel.getDataUpdate( item = Item(
                     id = navigationArgs.id,
                     itemName = binding.nameScroll.text.toString(),
-                    itemText = binding.textScroll.text.toString())
+                    itemText = binding.textScroll.text.toString(),
+                    dateStart = navigationArgs.dateSrart,
+                    dateСhange =  current.toString())
                 )
             }
         }

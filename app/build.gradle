@@ -44,6 +44,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
 
     // Lifecycle libraries
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"

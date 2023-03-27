@@ -23,6 +23,8 @@ class ScrollAdapter(
         val binding = AdapterScrollBinding.bind(item)
             fun bind(scroll: Item) = with(binding){
                 itemName.text = scroll.itemName
+                itemDateChanges.text = scroll.dateStart
+                itemDateStart.text = scroll.dateСhange
             }
     }
 

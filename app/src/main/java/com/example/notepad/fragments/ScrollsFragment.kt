@@ -22,7 +22,11 @@ class ScrollsFragment : Fragment() {
     }
 
     private val onItemClicked = { item: Item ->
-        val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(title = item.itemName, text = item.itemText, id = item.id!!)
+        val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(
+            title = item.itemName,
+            text = item.itemText,
+            id = item.id!!,
+            dateSrart = item.dateStart)
         this.findNavController().navigate(action)
     }
 
