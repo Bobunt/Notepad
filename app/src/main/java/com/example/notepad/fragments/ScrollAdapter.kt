@@ -16,6 +16,7 @@ class ScrollAdapter(
 
     fun setData(data: List<Item>){
         scrollList = data as ArrayList<Item>
+        notifyDataSetChanged()
     }
 
     class ScrollHolder(item: View): RecyclerView.ViewHolder(item) {
