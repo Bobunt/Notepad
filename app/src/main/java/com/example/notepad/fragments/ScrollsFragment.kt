@@ -22,12 +22,6 @@ class ScrollsFragment : Fragment() {
     }
 
     private val onItemClicked = { item: Item ->
-        val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(
-            title = item.itemName,
-            text = item.itemText,
-            id = item.id!!,
-            dateSrart = item.dateStart)
-        this.findNavController().navigate(action)
     }
 
     private val onItemClickedDelete = { item: Item ->
@@ -43,10 +37,13 @@ class ScrollsFragment : Fragment() {
         setHasOptionsMenu(true)
     }
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_scrolls, container, false)
         _binding = FragmentScrollsBinding.inflate(inflater, container, false)
+//         = inflater.inflate(R.layout.fragment_scrolls, container, false)
         return binding.root
     }
 
@@ -59,8 +56,6 @@ class ScrollsFragment : Fragment() {
             }
         }
         binding.addScrollItem.setOnClickListener {
-            val action = ScrollsFragmentDirections.actionScrollsFragmentToAddScroll(title = "", text = "")
-            this.findNavController().navigate(action)
         }
     }
 }
