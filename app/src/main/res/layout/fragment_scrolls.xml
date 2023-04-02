@@ -32,38 +32,6 @@
             tools:layout_editor_absoluteY="0dp"
             android:background="#CACACA">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#FFFFFF">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView1"
-                        style="@style/Widget.Inventory.ListItemTextView"
-                        android:layout_width="130dp"
-                        android:text="Имя записи" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        style="@style/Widget.Inventory.ListItemTextView"
-                        android:layout_width="140dp"
-                        android:text="Дата изменения" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        style="@style/Widget.Inventory.ListItemTextView"
-                        android:layout_width="140dp"
-                        android:text="Дата создания" />
-
-                </LinearLayout>
-            </FrameLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
