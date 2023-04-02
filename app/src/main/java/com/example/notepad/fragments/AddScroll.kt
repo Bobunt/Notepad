@@ -24,6 +24,14 @@ class AddScroll : Fragment() {
         )
     }
 
+    override fun onCreate(savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
+        arguments?.let{
+            viewModel.scrollId = it.getString(INSPECTION_ROUTE_KEY) as String
+        }
+        viewModel.loadScroll()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,31 +43,42 @@ class AddScroll : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.textScroll.setText(navigationArgs.text)
-//        binding.nameScroll.setText(navigationArgs.title )
+        if(viewModel.scrollInfo != null) {
+            binding.textScroll.setText(viewModel.scrollInfo?.itemText)
+            binding.nameScroll.setText(viewModel.scrollInfo?.itemName)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
-
         if (binding.nameScroll.text.toString() != "") {
-//            if (navigationArgs.id == 0) {
-//                viewModel.getDataInsert(
-//                    nameScroll = binding.nameScroll.text.toString(),
-//                    textScroll = binding.textScroll.text.toString(),
-//                    dateStart = current.toString(),
-//                    dateСhange =  current.toString()
-//                )
-//            }else {
-//                viewModel.getDataUpdate( item = Item(
-//                    id = navigationArgs.id,
-//                    itemName = binding.nameScroll.text.toString(),
-//                    itemText = binding.textScroll.text.toString(),
-//                    dateStart = navigationArgs.dateSrart,
-//                    dateСhange =  current.toString())
-//                )
-//            }
+            if (viewModel.scrollId.toInt() == 0) {
+                viewModel.getDataInsert(
+                    nameScroll = binding.nameScroll.text.toString(),
+                    textScroll = binding.textScroll.text.toString(),
+                    dateStart = current.toString(),
+                    dateСhange =  current.toString()
+                )
+            }else {
+                viewModel.getDataUpdate( item = Item(
+                    id = viewModel.scrollId.toInt(),
+                    itemName = binding.nameScroll.text.toString(),
+                    itemText = binding.textScroll.text.toString(),
+                    dateStart = viewModel.scrollInfo?.dateStart.toString(),
+                    dateСhange =  current.toString())
+                )
+            }
+        }
+    }
+
+    companion object{
+        private const val INSPECTION_ROUTE_KEY = "inspection_route_key"
+        fun createInstance(id: String = ""): AddScroll{
+            val bundle = Bundle()
+            bundle.putString(INSPECTION_ROUTE_KEY, id)
+            val fragment = AddScroll()
+            fragment.arguments = bundle
+            return fragment
         }
     }
 }

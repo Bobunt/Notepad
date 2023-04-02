@@ -16,4 +16,7 @@ interface ItemDao {
 
     @Query("SELECT * FROM Item")
     fun getItem(): Flow<List<Item>>
+
+    @Query("SELECT * FROM Item WHERE id = :scrollId")
+    fun getItemKey(scrollId: Int): Item
 }

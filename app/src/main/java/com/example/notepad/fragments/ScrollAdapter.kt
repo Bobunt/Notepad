@@ -9,8 +9,8 @@ import com.example.notepad.data.Item
 import com.example.notepad.databinding.AdapterScrollBinding
 
 class ScrollAdapter(
-    private val onItemClicked: (Item) -> Unit,
-    private val onItemClickedDelete: (Item) -> Unit
+    private val onItemClicked: (Item) -> Unit
+//    private val onItemClickedDelete: (Item) -> Unit
 ): RecyclerView.Adapter<ScrollAdapter.ScrollHolder>()  {
     var scrollList = ArrayList<Item>()
 
@@ -40,11 +40,12 @@ class ScrollAdapter(
             onItemClicked.invoke(scrollList[position])
         }
         holder.binding.buttonDelete.setOnClickListener {
-            onItemClickedDelete.invoke(scrollList[position])
+//            onItemClickedDelete.invoke(scrollList[position])
         }
     }
 
     override fun getItemCount(): Int {
         return scrollList.size
     }
+
 }

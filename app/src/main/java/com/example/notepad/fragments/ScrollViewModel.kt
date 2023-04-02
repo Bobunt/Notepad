@@ -3,28 +3,35 @@ package com.example.notepad.fragments
 import androidx.lifecycle.*
 import com.example.notepad.data.Item
 import com.example.notepad.data.ItemDao
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class ScrollViewModel (private val itemDao: ItemDao): ViewModel() {
-    // Cache all items form the database using LiveData.
+class ScrollViewModel (private val itemDao: ItemDao): ViewModel(), CoroutineScope {
     val allItems: LiveData<List<Item>> = itemDao.getItem().asLiveData()
+    var scrollId: String = ""
+    lateinit var scrollInfo: Item
 
-    private fun insertItem(item: Item) {
-        viewModelScope.launch {
-            itemDao.insertItem(item)
-        }
+    private val job: Job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO + job
+
+    private fun insertItem(item: Item) = launch {
+        itemDao.insertItem(item)
     }
 
-    fun getDataUpdate(item: Item){
-        viewModelScope.launch {
-            itemDao.updateItem(item)
-        }
+    fun loadScroll() = launch {
+        scrollInfo = itemDao.getItemKey(scrollId.toInt())
     }
 
-    fun getDataDelete(item: Item){
-        viewModelScope.launch {
-            itemDao.deleteItem(item)
-        }
+    fun getDataUpdate(item: Item) = launch {
+        itemDao.updateItem(item)
+    }
+
+    fun getDataDelete(item: Item)= launch {
+        itemDao.deleteItem(item)
     }
 
     fun getDataInsert(nameScroll: String, textScroll: String, dateStart: String, dateСhange: String){

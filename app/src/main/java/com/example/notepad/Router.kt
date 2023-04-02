@@ -1,7 +1,10 @@
 package com.example.notepad
 
+import android.webkit.CookieSyncManager.createInstance
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.notepad.data.Item
+import com.example.notepad.fragments.AddScroll
 import com.example.notepad.fragments.ScrollsFragment
 
 object Router {
@@ -30,8 +33,19 @@ object Router {
         showFragment(fragment, fm, R.id.mainFragment, addToBackStack)
     }
 
+    fun showChangeScroll( fm: FragmentManager?, id: String, addToBackStack: Boolean = true,){
+        showFragment(AddScroll.createInstance(id), fm, R.id.mainFragment, addToBackStack)
+    }
+
     fun showMainFragmentMain(fm: FragmentManager?){
         clearBackStack(fm)
         showInFragmentMainFragent(ScrollsFragment(), fm, addToBackStack = false)
     }
+
+    fun showAddScroll(fm: FragmentManager?){
+        clearBackStack(fm)
+        showInFragmentMainFragent(AddScroll(), fm, addToBackStack = false)
+    }
+
+
 }
