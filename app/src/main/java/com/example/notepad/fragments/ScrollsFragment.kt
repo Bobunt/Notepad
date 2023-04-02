@@ -28,15 +28,14 @@ class ScrollsFragment : Fragment() {
         showChangeScroll(activity?.supportFragmentManager, item.id.toString())
     }
 
-//    private val onItemClickedDelete = { item: Item ->
-//        viewModel.getDataDelete(item)
-//    }
+    private val onItemClickedDelete = { item: Item ->
+        viewModel.getDataDelete(item)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter = ScrollAdapter(
-            onItemClicked = onItemClicked,
-//            onItemClickedDelete = onItemClickedDelete
+            onItemClicked = onItemClicked
         )
         setHasOptionsMenu(true)
     }
@@ -45,7 +44,6 @@ class ScrollsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        val view = inflater.inflate(R.layout.fragment_scrolls, container, false)
         _binding = FragmentScrollsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,7 +57,7 @@ class ScrollsFragment : Fragment() {
             }
         }
         binding.addScrollItem.setOnClickListener {
-            showAddScroll(activity?.supportFragmentManager)
+            showChangeScroll(activity?.supportFragmentManager, "0")
         }
     }
 }

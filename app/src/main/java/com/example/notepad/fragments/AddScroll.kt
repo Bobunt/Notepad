@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.example.notepad.Router
 import com.example.notepad.ScrollApplication
 import com.example.notepad.data.Item
 import com.example.notepad.databinding.FragmentAddScrollBinding
@@ -29,7 +30,9 @@ class AddScroll : Fragment() {
         arguments?.let{
             viewModel.scrollId = it.getString(INSPECTION_ROUTE_KEY) as String
         }
-        viewModel.loadScroll()
+        if(viewModel.scrollId.toInt() != 0){
+            viewModel.loadScroll()
+        }
     }
 
     override fun onCreateView(
@@ -43,9 +46,17 @@ class AddScroll : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(viewModel.scrollInfo != null) {
+        if(viewModel.scrollId.toInt() != 0) {
             binding.textScroll.setText(viewModel.scrollInfo?.itemText)
             binding.nameScroll.setText(viewModel.scrollInfo?.itemName)
+            binding.buttonDelete.visibility = View.VISIBLE;
+        }else{
+            binding.textScroll.setText("")
+            binding.nameScroll.setText("")
+        }
+        binding.buttonDelete.setOnClickListener {
+            viewModel.scrollInfo?.let { it -> viewModel.getDataDelete(it) }
+            Router.showMainFragmentMain(activity?.supportFragmentManager)
         }
     }
 

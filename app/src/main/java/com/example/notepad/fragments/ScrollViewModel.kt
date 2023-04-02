@@ -12,7 +12,7 @@ import kotlin.coroutines.CoroutineContext
 class ScrollViewModel (private val itemDao: ItemDao): ViewModel(), CoroutineScope {
     val allItems: LiveData<List<Item>> = itemDao.getItem().asLiveData()
     var scrollId: String = ""
-    lateinit var scrollInfo: Item
+    var scrollInfo: Item? = null
 
     private val job: Job = Job()
     override val coroutineContext: CoroutineContext
@@ -30,9 +30,10 @@ class ScrollViewModel (private val itemDao: ItemDao): ViewModel(), CoroutineScop
         itemDao.updateItem(item)
     }
 
-    fun getDataDelete(item: Item)= launch {
+    fun getDataDelete(item: Item) = launch {
         itemDao.deleteItem(item)
     }
+
 
     fun getDataInsert(nameScroll: String, textScroll: String, dateStart: String, dateСhange: String){
         val item = Item(null, nameScroll, textScroll, dateStart, dateСhange)
