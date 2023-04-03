@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:layout_margin="16dp"
-    android:background="#FFFFFF"
+    android:layout_margin="10dp"
+    android:background="@drawable/riple_white_button"
     android:descendantFocusability="blocksDescendants">
 
     <TextView
@@ -27,8 +27,9 @@
         android:layout_width="130dp"
         android:layout_height="13dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
         android:text="Дата создания"
-        android:textSize="8sp"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_name" />
 
@@ -38,8 +39,9 @@
         android:layout_width="130dp"
         android:layout_height="13dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
         android:text="Дата изменения"
-        android:textSize="8sp"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDataStart" />
 
@@ -47,8 +49,9 @@
         android:id="@+id/item_date_changes"
         android:layout_width="218dp"
         android:layout_height="13dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
-        android:textSize="8sp"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textDataChanges"
         app:layout_constraintTop_toBottomOf="@+id/item_date_start" />
@@ -57,8 +60,9 @@
         android:id="@+id/item_date_start"
         android:layout_width="218dp"
         android:layout_height="13dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
-        android:textSize="8sp"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textDataStart"
         app:layout_constraintTop_toBottomOf="@+id/item_name" />
