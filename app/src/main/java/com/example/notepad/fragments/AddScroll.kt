@@ -19,7 +19,6 @@ import org.threeten.bp.LocalDate
 class AddScroll : Fragment() {
     private var _binding: FragmentAddScrollBinding? = null
     private val binding get() = _binding!!
-    private var toolBar: Toolbar? = null
     private val current = LocalDate.now()
 
     private val viewModel: ScrollViewModel by activityViewModels {
@@ -30,7 +29,6 @@ class AddScroll : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
         arguments?.let{
             viewModel.scrollId = it.getString(INSPECTION_ROUTE_KEY) as String
         }
@@ -44,9 +42,9 @@ class AddScroll : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        activity?.onBackPressed()
         _binding = FragmentAddScrollBinding.inflate(inflater, container, false)
         binding.toolbar.inflateMenu(R.menu.layout_menu)
+        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
         binding.toolbar.title = "Блокнот"
 //        binding.toolbar.isBackInvokedCallbackEnabled = true
         return binding.root
