@@ -34,7 +34,6 @@ class ScrollViewModel (private val itemDao: ItemDao): ViewModel(), CoroutineScop
         itemDao.deleteItem(item)
     }
 
-
     fun getDataInsert(nameScroll: String, textScroll: String, dateStart: String, dateСhange: String){
         val item = Item(null, nameScroll, textScroll, dateStart, dateСhange)
         insertItem(item)

@@ -46,7 +46,6 @@ class AddScroll : Fragment() {
         binding.toolbar.inflateMenu(R.menu.layout_menu)
         binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
         binding.toolbar.title = "Блокнот"
-//        binding.toolbar.isBackInvokedCallbackEnabled = true
         return binding.root
     }
 
@@ -60,8 +59,18 @@ class AddScroll : Fragment() {
             binding.nameScroll.setText("")
         }
         binding.buttonDelete.setOnClickListener {
-            viewModel.scrollInfo?.let { it -> viewModel.getDataDelete(it) }
+        }
+        binding.toolbar.setNavigationOnClickListener{
             Router.showMainFragmentMain(activity?.supportFragmentManager)
+        }
+        binding.toolbar.setOnMenuItemClickListener{
+            when(it.itemId) {
+                R.id.app_bar_menu_delete -> {
+                    viewModel.scrollInfo?.let { it -> viewModel.getDataDelete(it) }
+                    Router.showMainFragmentMain(activity?.supportFragmentManager)
+                }
+            }
+            true
         }
     }
 
