@@ -1,12 +1,14 @@
 package com.example.notepad.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toolbar
+import androidx.activity.setViewTreeOnBackPressedDispatcherOwner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.notepad.R
 import com.example.notepad.Router
 import com.example.notepad.ScrollApplication
 import com.example.notepad.data.Item
@@ -17,7 +19,8 @@ import org.threeten.bp.LocalDate
 class AddScroll : Fragment() {
     private var _binding: FragmentAddScrollBinding? = null
     private val binding get() = _binding!!
-    val current = LocalDate.now()
+    private var toolBar: Toolbar? = null
+    private val current = LocalDate.now()
 
     private val viewModel: ScrollViewModel by activityViewModels {
         ScrollViewModelFactory(
@@ -27,6 +30,7 @@ class AddScroll : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         arguments?.let{
             viewModel.scrollId = it.getString(INSPECTION_ROUTE_KEY) as String
         }
@@ -40,7 +44,11 @@ class AddScroll : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        activity?.onBackPressed()
         _binding = FragmentAddScrollBinding.inflate(inflater, container, false)
+        binding.toolbar.inflateMenu(R.menu.layout_menu)
+        binding.toolbar.title = "Блокнот"
+//        binding.toolbar.isBackInvokedCallbackEnabled = true
         return binding.root
     }
 
@@ -49,7 +57,6 @@ class AddScroll : Fragment() {
         if(viewModel.scrollId.toInt() != 0) {
             binding.textScroll.setText(viewModel.scrollInfo?.itemText)
             binding.nameScroll.setText(viewModel.scrollInfo?.itemName)
-            binding.buttonDelete.visibility = View.VISIBLE;
         }else{
             binding.textScroll.setText("")
             binding.nameScroll.setText("")
@@ -81,6 +88,7 @@ class AddScroll : Fragment() {
             }
         }
     }
+
 
     companion object{
         private const val INSPECTION_ROUTE_KEY = "inspection_route_key"
